@@ -4,7 +4,15 @@ Guía para unir Linux a un Active Directory
    Ejecuta el siguiente comando para instalar las herramientas requeridas:
    sudo apt update
    sudo apt install -y realmd sssd sssd-tools libnss-sss libpam-sss adcli samba-common-bin packagekit krb5-user
-aqui kerberos les pedira 3 cosas la primera pantalla es el dominio en mayuscula por ejemplo JBLANCO.COM luego la siguiente el controlador este esta en domain controllers u una unidad organizativa con nombre parecido copiamos em controlador del dominio y lo pegamos por ejemplo nombredelcontrolador@JBLANCO.COM y en la ultima pide un administrador del dominio podemos repetir el controlador de antes
+aqui kerberos les pedira 3 cosas la primera pantalla
+es el dominio en mayuscula por ejemplo JBLANCO.COM 
+luego la siguiente el controlador este esta en 
+domain controllers u una unidad organizativa con 
+nombre parecido copiamos em controlador del dominio
+y lo pegamos por ejemplo 
+nombredelcontrolador@JBLANCO.COM y en la ultima pide
+un administrador del dominio podemos repetir el 
+controlador de antes
 2. Configurar el archivo /etc/resolv.conf
    Edita el archivo /etc/resolv.conf y asegúrate de que tu servidor DNS apunte al controlador de dominio de Active Directory.
    Ejemplo:
