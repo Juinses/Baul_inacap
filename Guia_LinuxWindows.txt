@@ -1,0 +1,28 @@
+Guía para unir Linux a un Active Directory
+
+1. Instalar los paquetes necesarios
+   Ejecuta el siguiente comando para instalar las herramientas requeridas:
+   sudo apt update
+   sudo apt install -y realmd sssd sssd-tools libnss-sss libpam-sss adcli samba-common-bin packagekit krb5-user
+
+2. Configurar el archivo /etc/resolv.conf
+   Edita el archivo /etc/resolv.conf y asegúrate de que tu servidor DNS apunte al controlador de dominio de Active Directory.
+   Ejemplo:
+   nameserver 192.168.1.10 (aqui colocar la ip privada de tu instacia de windows server)
+   search midominio.com
+
+3. Probar la autenticación con Kerberos
+   Utiliza el comando kinit para probar si Kerberos puede autenticar al dominio.
+   kinit administrator@DOMINIO.COM
+   aqui se te pedira una contraseña si entras como administrator usa la contraseña que te da aws en la instacion de windows server
+   Luego verifica el ticket con:
+   klist
+
+4. Unir el servidor al Active Directory
+   Ejecuta el siguiente comando (reemplaza los valores con tu dominio y usuario administrador):
+   sudo realm join -v --membership-software=samba DOMINIO.COM -U administrator@DOMINIO.COM
+   aqui se te pedira una contraseña si entras como administrator usa la contraseña que te da aws en la instacion de windows server
+
+5. Probar el inicio de sesión con un usuario de dominio
+   Una vez unido al dominio, puedes probar el acceso con:
+   su - usuario@DOMINIO.COM
